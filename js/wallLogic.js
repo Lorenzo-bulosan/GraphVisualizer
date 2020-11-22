@@ -1,4 +1,4 @@
-// Main js file for index.html
+// File contains functions that contains the wall logic
 
 // Global variables
 var wallNodeClassName = 'wallNode';
