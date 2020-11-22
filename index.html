@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Graph Visualizer</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+	<!-- Bootstrap and jquery CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<!-- Nav var component -->
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		 	<a class="navbar-brand" href="#">LKgraph</a>
+		</div>
+		<ul class="nav navbar-nav">
+		 	<li class=""><a href="#">Instructions</a></li>
+			<li><a href="#">DFS algorythm</a></li>
+			<li><a href="#">BFS algorythm</a></li>
+			<li><a href="#">Dijkstra's algorythm</a></li>
+		</ul>
+	</div>
+</nav>
+
+<!-- visual graph component -->
+<div class="container graphContainer">
+	<div class="row graphRow" row="0">
+		<div class="col-sm-3 graphColumn element" id="Element_0-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_0-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_0-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_0-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="1">
+		<div class="col-sm-3 graphColumn element" id="Element_1-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_1-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_1-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_1-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="2">
+		<div class="col-sm-3 graphColumn element" id="Element_2-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_2-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_2-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_2-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="3">
+		<div class="col-sm-3 graphColumn element" id="Element_3-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_3-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_3-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_3-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="4">
+		<div class="col-sm-3 graphColumn element" id="Element_4-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_4-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_4-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_4-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="5">
+		<div class="col-sm-3 graphColumn element" id="Element_5-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_5-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_5-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_5-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="6">
+		<div class="col-sm-3 graphColumn element" id="Element_6-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_6-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_6-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_6-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="7">
+		<div class="col-sm-3 graphColumn element" id="Element_7-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_7-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_7-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_7-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="8">
+		<div class="col-sm-3 graphColumn element" id="Element_8-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_8-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_8-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_8-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="9">
+		<div class="col-sm-3 graphColumn element" id="Element_9-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_9-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_9-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_9-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="10">
+		<div class="col-sm-3 graphColumn element" id="Element_10-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_10-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_10-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_10-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="11">
+		<div class="col-sm-3 graphColumn element" id="Element_11-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_11-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_11-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_11-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="12">
+		<div class="col-sm-3 graphColumn element" id="Element_12-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_12-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_12-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_12-3" col="3">o</div>
+	</div>
+	<div class="row graphRow" row="13">
+		<div class="col-sm-3 graphColumn element" id="Element_13-0" col="0">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_13-1" col="1">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_13-2" col="2">o</div>
+		<div class="col-sm-3 graphColumn element" id="Element_13-3" col="3">o</div>
+	</div>
+</div>
+
+<button class="btn btn-primary btnGraph" id="btnPerformOperation">Walls Nodes</button>
+<button class="btn btn-success btnGraph" id="btnStartNode">Starting Node</button>
+<button class="btn btn-danger btnGraph" id="btnTargetNode">Target Node</button>
+
+<script src="js/index.js"></script>
+
+</body>
+</html>
