@@ -1,8 +1,9 @@
 // Main js file for index.html
 
-function main(){
-	popsAlert();
-}
+// Global variables
+var wallNodeClassName = 'wallNode';
+var startNodeClassName = 'startNode';
+var targetNodeClassName = 'targetNode';
 
 // sets graph element to specific class
 $('.element').click(function(){
@@ -15,9 +16,7 @@ $('.element').click(function(){
 		alert('No node style selected!');
 	}else{
 
-		resetStartStopNode();
-		$(this).addClass(valueOfActiveButton);
-
+		drawWallElements($(this),valueOfActiveButton);
 	}
 });
 
@@ -27,20 +26,36 @@ $('.btnGraph').click(function setActive(){
 	$(this).addClass('active');
 });
 
-// checks that there's a single starting/target node
-function resetStartStopNode(){
 
-	var startNodes = $('.element.startNode');
-	var targetNodes = $('.element.targetNode');
+// draws wall elements and when clicked 
+function drawWallElements(element,valueOfActiveButton){
 
-	console.log([startNodes.length,targetNodes.length])
+	// handle only wallNodes
+	if(valueOfActiveButton==wallNodeClassName){
 
-	if(startNodes.length == 1){$('.element').removeClass('startNode');}
-	if(targetNodes.length == 1){$('.element').removeClass('targetNode');}
+		// toggle between adding and removing wall
+		if(element.hasClass(valueOfActiveButton)){
+			element.removeClass(valueOfActiveButton);
+		}else{
+			element.addClass(valueOfActiveButton);
+		}
+	}
+	// handle only startNode
+	if(valueOfActiveButton==startNodeClassName){
 
-}
+		// check if any other element has starting node and remove
+		if($('.element').hasClass(valueOfActiveButton)){
+			$('.element').removeClass(valueOfActiveButton);
+		}
+		element.addClass(valueOfActiveButton);
+	}
+	// handle only startNode
+	if(valueOfActiveButton==targetNodeClassName){
 
-// debugger functions
-function popsAlert(){
-	alert('works')
+		// check if any other element has starting node and remove
+		if($('.element').hasClass(valueOfActiveButton)){
+			$('.element').removeClass(valueOfActiveButton);
+		}
+		element.addClass(valueOfActiveButton);
+	}
 }

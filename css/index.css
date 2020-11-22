@@ -16,7 +16,10 @@ body{
 {	
 	border: 1px solid #333;
 	border-radius: 5px;
-	background-color: #BBB;
+	background-color: #555;
+	background-image: url('https://images.unsplash.com/photo-1478059299873-f047d8c5fe1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
 }
 .graphContainer 
 .graphRow 
@@ -30,13 +33,14 @@ body{
 .graphRow 
 .element:hover
 {
-	background-color: #0070ba;
+	background-color: grey;
 }
 .graphContainer 
 .graphRow
 .element.wallNode /*important: no space = intersection*/
 {
-	background-color: blue !important;
+	background-color: grey !important;
+	background-image: url('https://images.unsplash.com/photo-1520758594221-872948699332?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
 }
 .graphContainer 
 .graphRow
