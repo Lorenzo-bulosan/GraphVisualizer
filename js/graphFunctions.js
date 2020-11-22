@@ -1,8 +1,5 @@
 // File contain functions for obtaining data from graph 
 
-
-
-
 // creates graph's adjacency list
 function createAdjacencyList(){
 	var adjacencyList = {};
@@ -12,9 +9,7 @@ function createAdjacencyList(){
 function createAdjacencyMatrix(){
 
 	// init variables
-	var elements = $('.element');
-	var currentID = '';
-	var nodePosition = [], row = 0, col = 0;
+	var element;
 
 	// create empty matrix
 	var numRows = $('.row').length;
@@ -22,16 +17,19 @@ function createAdjacencyMatrix(){
 	var adjacencyMatrix = createMatrix(numRows,numCol);
 
 	// fill matrix
-	for(var node=0; node<elements.length; node++){
+	for(var node=0; node<adjacencyMatrix.length; node++){
+		for(var neighbour=0; neighbour<adjacencyMatrix[node].length; neighbour++){
 
-		// reads ID and puts on matrix accordingly
-		currentID = elements[node].id;
-		nodePosition = getNodePositionFromID(currentID);
-		row = nodePosition[0];
-		col = nodePosition[1];
+			// get element from DOM
+			element = $('[row|='+ node +'] [col|='+ neighbour +']');
 
-		// fill matrix
-		adjacencyMatrix[row][col] = node;
+			// reflect walls on matrix
+			if(element.hasClass(wallNodeClassName)==true){
+				adjacencyMatrix[node][neighbour] = false;
+			}else{
+				adjacencyMatrix[node][neighbour] = true;
+			}
+		}
 	}
 	return adjacencyMatrix;
 }
