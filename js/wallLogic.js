@@ -21,13 +21,14 @@ $('.element').click(function(){
 
 // sets button to active and removes the active states from others
 $('.btnGraph').click(function setActive(){
+
 	$('.btnGraph').removeClass('active');
 	$(this).addClass('active');
+
 });
 
-
 // draws wall elements and when clicked 
-function drawWallElements(element,valueOfActiveButton){
+function drawWallElements(element, valueOfActiveButton){
 
 	// handle only wallNodes
 	if(valueOfActiveButton==wallNodeClassName){

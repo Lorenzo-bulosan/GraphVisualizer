@@ -5,18 +5,16 @@ function createAdjacencyList(){
 	var adjacencyList = {};
 }
 
-// create Adjacency matrix
+// create Adjacency matrix 
 function createAdjacencyMatrix(){
-
-	// init variables
-	var element;
 
 	// create empty matrix
 	var numRows = $('.row').length;
 	var numCol = $('[row|=0] .graphColumn').length;
 	var adjacencyMatrix = createMatrix(numRows,numCol);
 
-	// fill matrix
+	// fill matrix O(nxm)
+	var element;
 	for(var node=0; node<adjacencyMatrix.length; node++){
 		for(var neighbour=0; neighbour<adjacencyMatrix[node].length; neighbour++){
 
@@ -34,9 +32,43 @@ function createAdjacencyMatrix(){
 	return adjacencyMatrix;
 }
 
+// creates adjacency matrix
+function createAdjacencyMatrix2(){
+
+	// init variables
+	var elements = $('.element');
+	var elementClasses = '';
+
+	// create empty matrix
+	var numRows = $('.row').length;
+	var numCol = $('[row|=0] .graphColumn').length;
+	var adjacencyMatrix = createMatrix(numRows,numCol);
+
+	// fill matrix O(n)
+	for (var node = 0; node < elements.length; node++) {
+
+		// find out node's class
+		elementClasses = elements[node].className;
+		hasWallNodeClass = elementClasses.includes(wallNodeClassName);
+
+		// get position coordinates
+		[row, col] = getNodePositionFromID(elements[node].id);
+
+		// reflect walls in matrix
+		if(hasWallNodeClass==true){
+			adjacencyMatrix[row][col] = false;
+		}else{
+			adjacencyMatrix[row][col] = true;
+		}
+	}
+	return adjacencyMatrix;
+}
+
 // create empty matrix
-function createMatrix(row,col){
+function createMatrix(row, col){
+
 	var matrix = [];
+
 	for(var i=0; i<row; i++) {
 	    matrix[i] = new Array(col);
 	}	
@@ -62,9 +94,4 @@ function getNodePositionFromID(elementID){
 }
 
 // debugging functions
-function testAlert(){
-	alert('alert on another file');
-}
-
-createAdjacencyList();
-createAdjacencyMatrix();
+function testAlert(){alert('alert on another file');}
