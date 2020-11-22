@@ -15,7 +15,6 @@ $('.element').click(function(){
 	if(activeButton.length==0){
 		alert('No node style selected!');
 	}else{
-
 		drawWallElements($(this),valueOfActiveButton);
 	}
 });
