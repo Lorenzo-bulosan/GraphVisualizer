@@ -32,6 +32,24 @@ body{
 {
 	background-color: #0070ba;
 }
+.graphContainer 
+.graphRow
+.element.wallNode /*important: no space = intersection*/
+{
+	background-color: blue !important;
+}
+.graphContainer 
+.graphRow
+.element.startNode /*important: no space = intersection*/
+{
+	background-color: green !important;
+}
+.graphContainer 
+.graphRow
+.element.targetNode /*important: no space = intersection*/
+{
+	background-color: red !important;
+}
 
 /* button controls */
 .btnGraph.active
