@@ -2,7 +2,52 @@
 
 // creates graph's adjacency list
 function createAdjacencyList(){
+	
 	var adjacencyList = {};
+	var elements = $('.element');
+	var nodeID = ''
+
+	for (var node = 0; node < elements.length; node++){
+		nodeID = elements[node].id;
+		listOfNeighbours = getNeighboursOfNode(nodeID);
+		adjacencyList[node] = listOfNeighbours;
+	}
+	return adjacencyList;
+}
+
+// gets neighbours from a node and returns neighbours in a list
+function getNeighboursOfNode(nodeID){
+
+	// results list
+	neighboursList = [];
+
+	// get node position
+	[row, col] = getNodePositionFromID(nodeID);
+
+	// check all directions and add if exists
+	[upperNeighbour, hasUpper] = checkNodeExist(row, col+1);
+	[lowerNeighbour, hasLower] = checkNodeExist(row, col-1);
+	[rightNeighbour, hasRight] = checkNodeExist(row+1, col);
+	[leftNeighbour, hasLeft] = checkNodeExist(row-1, col);
+
+	if(hasUpper){neighboursList.push(upperNeighbour);}
+	if(hasLower){neighboursList.push(lowerNeighbour);}
+	if(hasRight){neighboursList.push(rightNeighbour);}
+	if(hasLeft){neighboursList.push(leftNeighbour);}
+
+	return neighboursList;
+}
+
+// check if node exists, if exists return the node
+function checkNodeExist(row, col){
+
+	nodeRetrieved = $('[row|='+ row +'] [col|='+ col +']');
+
+	if(nodeRetrieved.length == 0){
+		return [null,false];
+	}else{
+		return [nodeRetrieved, true]
+	}
 }
 
 // create Adjacency matrix 
@@ -87,11 +132,13 @@ function getNodePositionFromID(elementID){
 	splitID = elementID.split('_');
 	nodePosition = splitID[1];
 	nodePosition = nodePosition.split('-');
-	row = nodePosition[0];
-	col = nodePosition[1];
+	row = parseInt(nodePosition[0]);
+	col = parseInt(nodePosition[1]);
 
-	return [row,col];
+	return [row, col];
 }
 
 // debugging functions
 function testAlert(){alert('alert on another file');}
+
+createAdjacencyList()
