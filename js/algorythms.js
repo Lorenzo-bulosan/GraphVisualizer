@@ -2,37 +2,37 @@
 
 
 // DFS algorythm
-function DFS(startNode, targetNode, adjacencyMatrix){
+// function DFS(startNode, targetNode, adjacencyMatrix){
 
-	// helper function
-	function helperDFSrecursive(node, visitedNodes){
+// 	// helper function
+// 	function helperDFSrecursive(node, visitedNodes){
 
-		console.log('Inside');
+// 		console.log('Inside');
 
-		// base condition
-		if(!node){return null;}
+// 		// base condition
+// 		if(!node){return null;}
 
-		visitedNodes[node] = true;
+// 		visitedNodes[node] = true;
 
-		for (var neighbour = 0; neighbour<adjacencyMatrix.length; neighbour++){
+// 		for (var neighbour = 0; neighbour<adjacencyMatrix.length; neighbour++){
 
-			if(visitedNodes[targetNode]){return true}
+// 			if(visitedNodes[targetNode]){return true}
 
-			if(adjacencyMatrix[node][neighbour]==true && !visitedNodes[neighbour]){
-				helperDFSrecursive(neighbour,visitedNodes);
-			}
-		}
-	}
+// 			if(adjacencyMatrix[node][neighbour]==true && !visitedNodes[neighbour]){
+// 				helperDFSrecursive(neighbour,visitedNodes);
+// 			}
+// 		}
+// 	}
 
-	var visitedNodes = {};
-	var adjacencyMatrix = adjacencyMatrix;
+// 	var visitedNodes = {};
+// 	var adjacencyMatrix = adjacencyMatrix;
 
-	helperDFSrecursive(startNode,visitedNodes);
+// 	helperDFSrecursive(startNode,visitedNodes);
 
-	console.log(visitedNodes);
+// 	console.log(visitedNodes);
 
-	return visitedNodes;
-}
+// 	return visitedNodes;
+// }
 
 
 // adjacencyMatrix = createAdjacencyMatrix2();

@@ -4,6 +4,11 @@
 var wallNodeClassName = 'wallNode';
 var startNodeClassName = 'startNode';
 var targetNodeClassName = 'targetNode';
+var adjacencyList = {};
+
+// creates nodes and adjacency list
+allNodes = createNodesFromDOM();
+adjacencyList = createAdjacencyList(allNodes);
 
 // sets graph element to specific class
 $('.element').click(function(){
