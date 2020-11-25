@@ -95,22 +95,21 @@ function getNodeAtPosition(row, col, allNodes){
 	return [null, false];
 }
 
-// removes nodes in undirected graph given its adjacency list
-function removeNode(node, adjacencyList){
+// removes nodes in undirected graph given its adjacency list-> Global variable, this is not pass by value b/ object
+function removeNode(node, adjacencyListGlobal){
 
-	var listLength = adjacencyList[node].length // important as we are changing the global variable
+	var listLength = adjacencyListGlobal[node].length // important as we are changing the global variable
 
 	for(var neighbour = 0; neighbour<listLength; neighbour++){ // if you put it here the foorloop will be affected as length changing dynamically
 
 		// removes link from neighbour to this node
-		indexToRemove = adjacencyList[neighbour].indexOf(node);
-		adjacencyList[neighbour].splice(indexToRemove,1);
+		indexToRemove = adjacencyListGlobal[neighbour].indexOf(node);
+		adjacencyListGlobal[neighbour].splice(indexToRemove,1);
 
 		//console.log('removing '+ node.toString() + ' from neighbour: ' + neighbour.toString());
 	}
-
 	// remove neighbours from this node in the global variable
-	adjacencyList[node] = [];
+	adjacencyListGlobal[node] = [];
 }
 
 // create empty matrix

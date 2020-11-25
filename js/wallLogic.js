@@ -6,11 +6,11 @@ $( document ).ready(function() {
 var wallNodeClassName = 'wallNode';
 var startNodeClassName = 'startNode';
 var targetNodeClassName = 'targetNode';
-var adjacencyList = {};
+var adjacencyListGlobal = {};
 
 // creates nodes and adjacency list
 allNodes = createNodesFromDOM();
-adjacencyList = createAdjacencyList(allNodes);
+adjacencyListGlobal = createAdjacencyList(allNodes);
 
 // sets graph element to specific class
 $('.element').click(function(){
@@ -31,12 +31,7 @@ $('.btnGraph').click(function setActive(){
 
 	$('.btnGraph').removeClass('active');
 	$(this).addClass('active');
-
-
-	// DEBUGGINGG ---------------------
-	console.log(adjacencyList);
-	removeNode(1,adjacencyList);
-	console.log(adjacencyList);
+	
 });
 
 // draws wall elements and when clicked 
