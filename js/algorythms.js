@@ -1,6 +1,5 @@
 // File contains methods for the different path finding algorythms
 
-
 // DFS algorythm
 // function DFS(startNode, targetNode, adjacencyMatrix){
 
@@ -33,6 +32,7 @@
 
 // 	return visitedNodes;
 // }
+
 
 
 // adjacencyMatrix = createAdjacencyMatrix2();

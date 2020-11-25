@@ -49,13 +49,13 @@ function createNodesFromDOM(){
 // creates graph's adjacency list
 function createAdjacencyList(nodeList){
 
-	var adjacencyList = {};
+	var adjList = {};
 	
 	for(var node = 0; node<nodeList.length; node++){
 		listOfNeighbours = getNeighboursOfNode(nodeList[node], nodeList);
-		adjacencyList[node] = listOfNeighbours;
+		adjList[node] = listOfNeighbours;
 	}
-	return adjacencyList;
+	return adjList;
 }
 
 // gets all direct neighbours of the nodes in the DOM
@@ -96,16 +96,20 @@ function getNodeAtPosition(row, col, allNodes){
 }
 
 // removes nodes in undirected graph given its adjacency list
-function removeNode(node){
+function removeNode(node, adjacencyList){
 
-	for(var neighbour = 0; neighbour<adjacencyList[node].length; neighbour++){
+	var listLength = adjacencyList[node].length // important as we are changing the global variable
+
+	for(var neighbour = 0; neighbour<listLength; neighbour++){ // if you put it here the foorloop will be affected as length changing dynamically
 
 		// removes link from neighbour to this node
 		indexToRemove = adjacencyList[neighbour].indexOf(node);
 		adjacencyList[neighbour].splice(indexToRemove,1);
+
+		//console.log('removing '+ node.toString() + ' from neighbour: ' + neighbour.toString());
 	}
 
-	// remove neighbours from this node
+	// remove neighbours from this node in the global variable
 	adjacencyList[node] = [];
 }
 
@@ -122,6 +126,7 @@ function createMatrix(row, col){
 
 // debugging functions
 function testAlert(){alert('alert on another file');}
+
 
 // // create Adjacency matrix 
 // function createAdjacencyMatrix(){

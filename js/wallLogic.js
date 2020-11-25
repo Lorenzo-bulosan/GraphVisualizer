@@ -1,5 +1,7 @@
 // File contains functions that contains the wall logic
 
+$( document ).ready(function() {
+
 // Global variables
 var wallNodeClassName = 'wallNode';
 var startNodeClassName = 'startNode';
@@ -30,6 +32,11 @@ $('.btnGraph').click(function setActive(){
 	$('.btnGraph').removeClass('active');
 	$(this).addClass('active');
 
+
+	// DEBUGGINGG ---------------------
+	console.log(adjacencyList);
+	removeNode(1,adjacencyList);
+	console.log(adjacencyList);
 });
 
 // draws wall elements and when clicked 
@@ -64,3 +71,5 @@ function drawWallElements(element, valueOfActiveButton){
 		element.addClass(valueOfActiveButton);
 	}
 }
+
+});
