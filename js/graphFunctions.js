@@ -1,34 +1,57 @@
 // File contain functions for obtaining data from graph 
 
-// creates graph's adjacency list
-function createAdjacencyList(){
-	
-	var adjacencyList = {};
-	var elements = $('.element');
-	var nodeID = ''
+// Creates custom class node that contains the value and it's coordinates on the frontend matrix
+class Node {
+	constructor(x_position, y_position, value, DOMelement){
+		this.x = x_position;
+		this.y = y_position;
+		this.value = value;
+		this.DOM = DOMelement;
+	}
+}
 
-	for (var node = 0; node < elements.length; node++){
-		nodeID = elements[node].id;
-		listOfNeighbours = getNeighboursOfNode(nodeID);
+// create nodes from DOM 
+function createNodesFromDOM(){
+	
+	elements = $('.element');
+	listOfNodes = [];
+
+	for(var nodeValue=0; nodeValue<elements.length; nodeValue++){
+		
+		elementID = elements[nodeValue].id;
+		[row, col] = getNodePositionFromID(elementID);
+		
+		node = new Node(row, col, nodeValue, elements[nodeValue]);
+		listOfNodes.push(node);
+	}
+	return listOfNodes;
+}
+
+// creates graph's adjacency list
+function createAdjacencyList(nodeList){
+
+	var adjacencyList = {};
+	
+	for(var node = 0; node<nodeList.length; node++){
+		listOfNeighbours = getNeighboursOfNode(nodeList[node], nodeList);
 		adjacencyList[node] = listOfNeighbours;
 	}
 	return adjacencyList;
 }
 
-// gets neighbours from a node and returns neighbours in a list
-function getNeighboursOfNode(nodeID){
-
+function getNeighboursOfNode(node, nodeList){
 	// results list
 	neighboursList = [];
 
 	// get node position
-	[row, col] = getNodePositionFromID(nodeID);
+	row = node.x;
+	col = node.y;
 
 	// check all directions and add if exists
-	[upperNeighbour, hasUpper] = checkNodeExist(row, col+1);
-	[lowerNeighbour, hasLower] = checkNodeExist(row, col-1);
-	[rightNeighbour, hasRight] = checkNodeExist(row+1, col);
-	[leftNeighbour, hasLeft] = checkNodeExist(row-1, col);
+	[upperNeighbour, hasUpper] = getNodeAtPosition(row, col+1, nodeList);
+	[lowerNeighbour, hasLower] = getNodeAtPosition(row, col-1, nodeList);
+	[rightNeighbour, hasRight] = getNodeAtPosition(row+1, col, nodeList);
+	[leftNeighbour, hasLeft] = getNodeAtPosition(row-1, col, nodeList);
 
 	if(hasUpper){neighboursList.push(upperNeighbour);}
 	if(hasLower){neighboursList.push(lowerNeighbour);}
@@ -38,15 +61,64 @@ function getNeighboursOfNode(nodeID){
 	return neighboursList;
 }
 
-// check if node exists, if exists return the node
-function checkNodeExist(row, col){
+// gets node from position
+function getNodeAtPosition(x, y, nodeList){
 
-	nodeRetrieved = $('[row|='+ row +'] [col|='+ col +']');
+	var currentNode = null;
 
-	if(nodeRetrieved.length == 0){
-		return [null,false];
-	}else{
-		return [nodeRetrieved, true]
+	for (var node = 0; node < nodeList.length; node++) {
+		
+		currentNode = nodeList[node];
+		if(currentNode.x==x && currentNode.y==y){
+			return [nodeList[node],true];
+		}
+	}
+	return [null, false];
+}
+
+// gets neighbours from a node and returns neighbours in a list
+// function getNeighboursOfNode(node){
+
+// 	// results list
+// 	neighboursList = [];
+
+// 	// get node position
+// 	row = node.x;
+// 	col = node.y;
+
+// 	// check all directions and add if exists
+// 	[upperNeighbour, hasUpper] = checkNodeExistAtPosition(row, col+1);
+// 	[lowerNeighbour, hasLower] = checkNodeExistAtPosition(row, col-1);
+// 	[rightNeighbour, hasRight] = checkNodeExistAtPosition(row+1, col);
+// 	[leftNeighbour, hasLeft] = checkNodeExistAtPosition(row-1, col);
+
+// 	if(hasUpper){neighboursList.push(upperNeighbour);}
+// 	if(hasLower){neighboursList.push(lowerNeighbour);}
+// 	if(hasRight){neighboursList.push(rightNeighbour);}
+// 	if(hasLeft){neighboursList.push(leftNeighbour);}
+
+// 	return neighboursList;
+// }
+
+// // check if node exists, if exists return the node
+// function checkNodeExistAtPosition(row, col){
+
+// 	nodeRetrieved = $('[row|='+ row +'] [col|='+ col +']');
+
+// 	if(nodeRetrieved.length == 0){
+// 		return [null,false];
+// 	}else{
+// 		return [nodeRetrieved, true]
+// 	}
+// }
+
+// removes nodes in undirected graph given its adjacency list
+function removeNode(node, adjacencyList){
+
+	for(var neighbour = 0; neighbour<adjacencyList[node].length; neighbour++){
+
+		indexToRemove = adjacencyList[neighbour].indexOf(node);
+		adjacencyList[neighbour].splice(indexToRemove,1);
 	}
 }
 
@@ -141,4 +213,3 @@ function getNodePositionFromID(elementID){
 // debugging functions
 function testAlert(){alert('alert on another file');}
 
-createAdjacencyList()
