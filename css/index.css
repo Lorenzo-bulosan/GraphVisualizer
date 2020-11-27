@@ -54,6 +54,12 @@ body{
 {
 	background-color: red !important;
 }
+.graphContainer 
+.graphRow
+.element.path /*important: no space = intersection*/
+{
+	background-color: yellow !important;
+}
 
 /* button controls */
 .btnGraph.active

@@ -18,9 +18,13 @@ class Node {
 // create nodes list from DOM, and returns node
 function createNodesFromDOM(){
 	
-	elements = $('.element');
-	listOfNodes = [];
+	// initialise with values
+	var elements = $('.element');
+	var listOfNodes = [];
+	var elementID = '';
+	var row = 0, col = 0, node = null;
 
+	// go to each graph element in the dom and make a node list
 	for(var nodeValue=0; nodeValue<elements.length; nodeValue++){
 		
 		elementID = elements[nodeValue].id;
@@ -35,7 +39,10 @@ function createNodesFromDOM(){
 // creates graph's adjacency list
 function createAdjacencyList(nodeList){
 
+	// initialize with values
 	var adjList = {};
+	var hasWallClass = false;
+	var listOfNeighbours = [];
 	
 	for(var node = 0; node<nodeList.length; node++){
 
@@ -54,12 +61,15 @@ function createAdjacencyList(nodeList){
 
 // gets all direct neighbours of the nodes in the DOM
 function getNeighboursOfNode(node, nodeList){
-	// results list
-	neighboursList = [];
-
-	// get node position
-	row = node.row;
-	col = node.col;
+	
+	// initialize with values
+	var neighboursList = [];
+	var row = node.row;
+	var col = node.col;
+	var upperNeighbour = null, hasUpper = false;
+	var lowerNeighbour = null, hasLower = false;
+	var rightNeighbour = null, hasRight = false;
+	var leftNeighbour = null, hasLeft = false;
 
 	// check all directions and add if exists
 	[upperNeighbour, hasUpper] = getNodeAtPosition(row, col+1, nodeList);
@@ -67,6 +77,7 @@ function getNeighboursOfNode(node, nodeList){
 	[rightNeighbour, hasRight] = getNodeAtPosition(row+1, col, nodeList);
 	[leftNeighbour, hasLeft] = getNodeAtPosition(row-1, col, nodeList);
 
+	// add node to results list and return
 	if(hasUpper){neighboursList.push(upperNeighbour.value);}
 	if(hasLower){neighboursList.push(lowerNeighbour.value);}
 	if(hasRight){neighboursList.push(rightNeighbour.value);}
@@ -129,6 +140,8 @@ function getNodePositionFromID(elementID){
 
 // debugging functions
 function testAlert(){alert('alert on another file');}
+
+
 
 
 // // create Adjacency matrix 

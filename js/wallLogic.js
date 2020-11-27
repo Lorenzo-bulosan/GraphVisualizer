@@ -18,6 +18,20 @@ $('#btnDebug').click(function(){
 	allNodesGlobal = createNodesFromDOM();
 	adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
 	console.log(adjacencyListGlobal);
+
+	// get start and target node
+	[startNode, targetNode, startTargetNodeExist] = getStartAndTargetNode(allNodesGlobal);
+
+	// make sure there exist a start and target node
+	if(startTargetNodeExist == true){
+		//test search
+		path = DFS(startNode, targetNode, adjacencyListGlobal);
+
+		// draw path
+		drawPath(path,allNodesGlobal);
+	}else{
+		console.log('Please select a start and target node');
+	}
 });
 
 // sets graph element to specific class
@@ -96,4 +110,40 @@ function drawWallElements(element, valueOfActiveButton){
 	}
 }
 
-});
+// draw path from a given list of nodes
+function drawPath(pathObject, allNodes){
+
+	console.log('drawing path');
+	var path = Object.getOwnPropertyNames(pathObject);
+	var currentNode = 0;
+
+	for(var node = 0; node<path.length; node++){
+		//currentNode = path[node].DOM.classList.add('path');
+		console.log(path[node]);
+	}
+}
+
+// get start Node and target node
+function getStartAndTargetNode(allNodes){
+
+	// check that exist
+	var startNodeElement = $('.element.startNode'); 
+	var targetNodeElement = $('.element.targetNode');
+	if(startNodeElement.length==0 || targetNodeElement.length==0){ return [null, null, false];}
+
+	// get elements with start and target classes
+	var startNodeID = startNodeElement[0].id; 
+	var targetNodeID = targetNodeElement[0].id;
+
+	// get the coordinates information from the ID
+	[startNodeRow, startNodeCol] = getNodePositionFromID(startNodeID);
+	[targetNodeRow, targetNodeCol] = getNodePositionFromID(targetNodeID);
+
+	// get the node at those coordinates 
+	[startNode, ignore]= getNodeAtPosition(startNodeRow, startNodeCol, allNodes);
+	[targetNode, ignore] = getNodeAtPosition(targetNodeRow, targetNodeCol, allNodes);
+
+	return [startNode.value, targetNode.value, true];
+}
+
+}); // end of document ready
