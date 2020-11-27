@@ -1,38 +1,44 @@
 // File contains methods for the different path finding algorythms
 
-// DFS algorythm
-// function DFS(startNode, targetNode, adjacencyMatrix){
+//DFS algorythm
+function DFS(startNode, targetNode, adjacencyList){
+	// helper function
+	function helperDFSrecursive(startNode,adjacencyList){
 
-// 	// helper function
-// 	function helperDFSrecursive(node, visitedNodes){
+		var currentNode = 0;
+		var neighbour = 0;
+		visitedList[startNode] = true;
 
-// 		console.log('Inside');
+		if(startNode == targetNode){
+			console.log('Found -----------------------------------');
+			return true;
+		}
+		
+		for(var neighbourIdx = 0; neighbourIdx<adjacencyList[startNode].length; neighbourIdx++){
+			
+			neighbour = adjacencyList[startNode][neighbourIdx];
+			console.log('checking neighbour='+neighbour.toString()+' from node='+startNode.toString());
+			
+			if(!visitedList[neighbour]){
+				console.log('neighbour not visited');
+				isFound = helperDFSrecursive(neighbour,adjacencyList);
+				if(isFound){
+					return true;
+				}
+			}
+			console.log('neighbour already visited');
+		}
+	}
+	console.log('DFS on starting node: ' + startNode.toString());
+	console.log('Searching for node: ' + targetNode.toString());
 
-// 		// base condition
-// 		if(!node){return null;}
+	var visitedList = {};
 
-// 		visitedNodes[node] = true;
+	helperDFSrecursive(startNode, adjacencyList);
+	console.log(visitedList);
 
-// 		for (var neighbour = 0; neighbour<adjacencyMatrix.length; neighbour++){
-
-// 			if(visitedNodes[targetNode]){return true}
-
-// 			if(adjacencyMatrix[node][neighbour]==true && !visitedNodes[neighbour]){
-// 				helperDFSrecursive(neighbour,visitedNodes);
-// 			}
-// 		}
-// 	}
-
-// 	var visitedNodes = {};
-// 	var adjacencyMatrix = adjacencyMatrix;
-
-// 	helperDFSrecursive(startNode,visitedNodes);
-
-// 	console.log(visitedNodes);
-
-// 	return visitedNodes;
-// }
-
+	return visitedList;
+}
 
 
 // adjacencyMatrix = createAdjacencyMatrix2();
