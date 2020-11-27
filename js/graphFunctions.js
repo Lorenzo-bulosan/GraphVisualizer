@@ -1,5 +1,10 @@
 // File contain functions for obtaining data from graph 
 
+// Global variables
+var wallNodeClassName = 'wallNode';
+var startNodeClassName = 'startNode';
+var targetNodeClassName = 'targetNode';
+
 // Creates custom class node that contains the value and it's coordinates on the frontend matrix
 class Node {
 	constructor(x_position, y_position, value, DOMelement){
@@ -12,25 +17,6 @@ class Node {
 
 // create nodes list from DOM, and returns node
 function createNodesFromDOM(){
-	
-	// private helper function to get node's position given an element ID to create the node object
-	// after this this function won't be needed anymore as the node itself will have this data
-	function getNodePositionFromID(elementID){
-
-		// init variables
-		var splitID = [];
-		var nodePosition = '';
-		var	row = 0, col = 0;
-
-		// gets row and column information from ID
-		splitID = elementID.split('_');
-		nodePosition = splitID[1];
-		nodePosition = nodePosition.split('-');
-		row = parseInt(nodePosition[0]);
-		col = parseInt(nodePosition[1]);
-
-		return [row, col];
-	}
 	
 	elements = $('.element');
 	listOfNodes = [];
@@ -52,8 +38,16 @@ function createAdjacencyList(nodeList){
 	var adjList = {};
 	
 	for(var node = 0; node<nodeList.length; node++){
-		listOfNeighbours = getNeighboursOfNode(nodeList[node], nodeList);
-		adjList[node] = listOfNeighbours;
+
+		// skip walls
+		hasWallClass = nodeList[node].DOM.classList.contains(wallNodeClassName);
+		
+		if(hasWallClass==true){
+			adjList[node] = [];
+		}else{
+			listOfNeighbours = getNeighboursOfNode(nodeList[node], nodeList);
+			adjList[node] = listOfNeighbours;
+		}
 	}
 	return adjList;
 }
@@ -84,33 +78,46 @@ function getNeighboursOfNode(node, nodeList){
 // gets node from position and returns the node and a bool flag that indicated if exist or not
 function getNodeAtPosition(row, col, allNodes){
 
+	// initialise with values
 	var currentNode = null;
+	var hasWallClass = false;
 
 	for (var node = 0; node < allNodes.length; node++) {
+
+		// check if element exist
 		currentNode = allNodes[node];
 		if(currentNode.row==row && currentNode.col==col){
-			return [allNodes[node],true];
+
+			// check if element has this wall class
+			hasWallClass = currentNode.DOM.classList.contains(wallNodeClassName);
+			if(hasWallClass == false){
+				return [allNodes[node],true];
+			}
 		}
 	}
 	return [null, false];
 }
 
 // removes nodes in undirected graph given its adjacency list-> Global variable, this is not pass by value b/ object
-function removeNode(node, adjacencyListGlobal){
+// function removeNode(node, adjacencyListGlobal){
 
-	var listLength = adjacencyListGlobal[node].length // important as we are changing the global variable
+// 	var listLength = adjacencyListGlobal[node].length // important as we are changing the global variable
 
-	for(var neighbour = 0; neighbour<listLength; neighbour++){ // if you put it here the foorloop will be affected as length changing dynamically
+// 	for(var neighbour = 0; neighbour<listLength; neighbour++){ // if you put it here the foorloop will be affected as length changing dynamically
 
-		// removes link from neighbour to this node
-		indexToRemove = adjacencyListGlobal[neighbour].indexOf(node);
-		adjacencyListGlobal[neighbour].splice(indexToRemove,1);
+// 		// removes link from neighbour to this node
+// 		currentElement = adjacencyListGlobal[node][neighbour];
+// 		indexToRemove = adjacencyListGlobal[currentElement].indexOf(node);
+// 		adjacencyListGlobal[currentElement].splice(indexToRemove,1);
 
-		//console.log('removing '+ node.toString() + ' from neighbour: ' + neighbour.toString());
-	}
-	// remove neighbours from this node in the global variable
-	adjacencyListGlobal[node] = [];
-}
+// 		console.log('removing this node='+ node.toString() + ' from neighbour=' + currentElement.toString());
+// 	}
+// 	// remove neighbours from this node in the global variable
+// 	console.log('removing all neighbour of ' + node.toString());
+// 	adjacencyListGlobal[node] = [];
+// }
+
+// adds a node to the list
 
 // create empty matrix
 function createMatrix(row, col){
@@ -121,6 +128,24 @@ function createMatrix(row, col){
 	    matrix[i] = new Array(col);
 	}	
 	return matrix;
+}
+
+// function to get node's position given an element ID to create the node object
+function getNodePositionFromID(elementID){
+
+	// init variables
+	var splitID = [];
+	var nodePosition = '';
+	var	row = 0, col = 0;
+
+	// gets row and column information from ID
+	splitID = elementID.split('_');
+	nodePosition = splitID[1];
+	nodePosition = nodePosition.split('-');
+	row = parseInt(nodePosition[0]);
+	col = parseInt(nodePosition[1]);
+
+	return [row, col];
 }
 
 // debugging functions

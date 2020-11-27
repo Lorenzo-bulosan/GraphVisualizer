@@ -9,8 +9,16 @@ var targetNodeClassName = 'targetNode';
 var adjacencyListGlobal = {};
 
 // creates nodes and adjacency list
-allNodes = createNodesFromDOM();
-adjacencyListGlobal = createAdjacencyList(allNodes);
+// allNodesGlobal = createNodesFromDOM();
+// adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
+
+// Debugging---------------------------
+$('#btnDebug').click(function(){
+	
+	allNodesGlobal = createNodesFromDOM();
+	adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
+	console.log(adjacencyListGlobal);
+});
 
 // sets graph element to specific class
 $('.element').click(function(){
@@ -31,7 +39,7 @@ $('.btnGraph').click(function setActive(){
 
 	$('.btnGraph').removeClass('active');
 	$(this).addClass('active');
-	
+
 });
 
 // draws wall elements and when clicked 
