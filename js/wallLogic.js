@@ -118,8 +118,15 @@ function drawPath(pathObject, allNodes){
 	var currentNode = 0;
 
 	for(var node = 0; node<path.length; node++){
-		//currentNode = path[node].DOM.classList.add('path');
-		console.log(path[node]);
+		
+		currentNode = path[node];
+		nodeClasses = allNodes[currentNode].DOM.classList;
+		// add path class to element but skip target and start nodes
+		if(nodeClasses.contains(startNodeClassName) || nodeClasses.contains(targetNodeClassName)){
+			console.log('');
+		}else{
+			nodeClasses.add('path');
+		}
 	}
 }
 
