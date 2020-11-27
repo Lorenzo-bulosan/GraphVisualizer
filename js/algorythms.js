@@ -22,22 +22,27 @@ function DFS(startNode, targetNode, adjacencyList){
 			if(!visitedList[neighbour]){
 				console.log('neighbour not visited');
 				isFound = helperDFSrecursive(neighbour,adjacencyList);
-				if(isFound){
+				if(isFound == true){
 					return true;
 				}
 			}
 			console.log('neighbour already visited');
 		}
+		console.log('finished checking');
+		return false;
 	}
 	console.log('DFS on starting node: ' + startNode.toString());
 	console.log('Searching for node: ' + targetNode.toString());
 
 	var visitedList = {};
 
-	helperDFSrecursive(startNode, adjacencyList);
-	console.log(visitedList);
-
-	return visitedList;
+	isFound = helperDFSrecursive(startNode, adjacencyList);
+	
+	if(isFound){
+		return [visitedList, true];
+	} else {
+		return [visitedList, false];
+	}
 }
 
 

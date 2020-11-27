@@ -25,10 +25,15 @@ $('#btnDebug').click(function(){
 	// make sure there exist a start and target node
 	if(startTargetNodeExist == true){
 		//test search
-		path = DFS(startNode, targetNode, adjacencyListGlobal);
+		[path, pathFound] = DFS(startNode, targetNode, adjacencyListGlobal);
 
 		// draw path
-		drawPath(path,allNodesGlobal);
+		if(pathFound == true){
+			drawPath(path,allNodesGlobal);
+		}else {
+			alert('Path not found');
+		}
+		
 	}else{
 		console.log('Please select a start and target node');
 	}
