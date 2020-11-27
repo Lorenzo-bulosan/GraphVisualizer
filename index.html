@@ -23,12 +23,12 @@
 		 	<a class="navbar-brand" href="#">LKgraph</a>
 		</div>
 		<ul class="nav navbar-nav">
-		 	<li class=""><a href="#">Instructions</a></li>
+		 	<li class=""><a href="#" data-toggle="modal" data-target="#ModalTutorial1">Instructions</a></li>
 			<li><a href="#">DFS algorythm</a></li>
-			<li><a href="#">BFS algorythm</a></li>
-			<li><a href="#">Dijkstra's algorythm</a></li>
+			<li><a href="#">More soon!</a></li>
+<!-- 			<li><a href="#">Dijkstra's algorythm</a></li>
 			<li><a href="#">Bellman-Ford algorythm</a></li>
-			<li><a href="#">Floyd-Warshall algorythm</a></li>
+			<li><a href="#">Floyd-Warshall algorythm</a></li> -->
 		</ul>
 	</div>
 </nav>
@@ -149,11 +149,150 @@
 	</div>
 </div>
 
+<br>
+
 <!-- button controls -->
-<button class="btn btn-primary btnGraph" id="btnPerformOperation" value="wallNode">Walls Nodes</button>
-<button class="btn btn-success btnGraph" id="btnStartNode" value="startNode">Starting Node</button>
-<button class="btn btn-danger btnGraph" id="btnTargetNode" value="targetNode">Target Node</button>
-<button class="btn btn-danger btnGraph" id="btnDebug">DEBUG</button>
+<div class="horizontalCentred">
+	<button class="btn btn-primary btnGraph btnGroup1" id="btnPerformOperation" value="wallNode">Wall Nodes</button>
+	<button class="btn btn-success btnGraph btnGroup1" id="btnStartNode" value="startNode">Starting Node</button>
+	<button class="btn btn-danger btnGraph btnGroup1" id="btnTargetNode" value="targetNode">Target Node</button>
+	<button class="btn btn-info btnGraph btnGroup1" id="btnStartPathFinding">START</button>
+	<button type="button" class="btn btn-warning" id="btnTutorial" data-toggle="modal" data-target="#ModalTutorial1">Tutorial
+	</button>
+	<button class="btn btn-info btnGroup2" id="btnClearAll">Reset</button>
+</div>
+
+<!-- Modal when page is refreshed-->
+<div class="modal fade" id="ModalTutorial0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">
+					<b>Proceed to turorial?</b> 
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p class="horizontalCentred">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial1">Yes!</button>
+				</p>
+				<p>You can always start the tutorial later on.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for tutorial walls-->
+<div class="modal fade" id="ModalTutorial1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">
+					<b>Step 1: How to place walls?</b> 
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Select the following button and click anywhere on the grid:</p>
+				<p class="horizontalCentred">
+					<button class="btn btn-primary">Wall Nodes</button>
+				</p>
+				<p> You can also remove walls by clicking on them again!
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial2">Next</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for tutorial starting node-->
+<div class="modal fade" id="ModalTutorial2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">
+					<b>Step 2: How to place a starting point?</b> 
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Select the following button and click anywhere on the grid:</p>
+				<p class="horizontalCentred">
+					<button class="btn btn-success">Starting Node</button>
+				</p>			
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial1">Prev</button>
+				<button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial3">Next</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for tutorial target node-->
+<div class="modal fade" id="ModalTutorial3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">
+					<b>Step 3: How to place a target?</b> 
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Select the following button and click anywhere on the grid:</p>
+				<p class="horizontalCentred">
+					<button class="btn btn-danger">Target Node</button>
+				</p>			
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial2">Prev</button>
+				<button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial4">Next</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for tutorial starting the algorythm-->
+<div class="modal fade" id="ModalTutorial4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">
+					<b>Step 3: How to place a target?</b> 
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>After having selected both a start and a target press the following:</p>
+				<p class="horizontalCentred">
+					<button class="btn btn-info">START</button>
+				</p>			
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial3">Prev</button>
+				<button type="button" class="btn btn-dark" data-dismiss="modal">End tutorial</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- scripts -->
 <script src="js/wallLogic.js"></script>

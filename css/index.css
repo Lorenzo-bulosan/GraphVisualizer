@@ -9,6 +9,13 @@ body{
 	background-size: 100% 100%;
 }
 
+/* tutorial styles */
+.overlay {
+	z-index: 9;
+	margin: 30px;
+	background: #009938;
+}
+
 /* navigation bar */
 
 /* graph styles */
@@ -20,6 +27,7 @@ body{
 	/*background-image: url('https://images.unsplash.com/photo-1478059299873-f047d8c5fe1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');*/
 	background-repeat: no-repeat;	
 	background-size: 100% 100%;
+	color: rgba(0,0,0,0);
 }
 .graphContainer 
 .graphRow 
@@ -56,7 +64,7 @@ body{
 }
 .graphContainer 
 .graphRow
-.element.path /*important: no space = intersection*/
+.element.pathNode /*important: no space = intersection*/
 {
 	background-color: yellow !important;
 }
@@ -66,6 +74,11 @@ body{
 {
 	color: black !important;
 	background-color: white !important;
+}
+
+/* utility styles */
+.horizontalCentred{
+	text-align: center;
 }
 
 /* for debugging */
