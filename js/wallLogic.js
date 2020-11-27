@@ -14,7 +14,7 @@ var adjacencyListGlobal = {};
 
 // Debugging---------------------------
 $('#btnDebug').click(function(){
-	
+
 	allNodesGlobal = createNodesFromDOM();
 	adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
 	console.log(adjacencyListGlobal);
@@ -48,30 +48,51 @@ function drawWallElements(element, valueOfActiveButton){
 	// handle only wallNodes
 	if(valueOfActiveButton==wallNodeClassName){
 
+		// skip target and start node
+		if(element.hasClass(startNodeClassName) || element.hasClass(targetNodeClassName)){
+			alert('Cannot make this cell a wall node');
+			return;
+		}
+
 		// toggle between adding and removing wall
 		if(element.hasClass(valueOfActiveButton)){
 			element.removeClass(valueOfActiveButton);
 		}else{
 			element.addClass(valueOfActiveButton);
 		}
+		return;
 	}
 	// handle only startNode
 	if(valueOfActiveButton==startNodeClassName){
 
-		// check if any other element has starting node and remove
-		if($('.element').hasClass(valueOfActiveButton)){
-			$('.element').removeClass(valueOfActiveButton);
+		// skip walls and start node
+		if(element.hasClass(wallNodeClassName) || element.hasClass(targetNodeClassName)){
+			alert('Cannot make this cell a start node');
+			return;
 		}
-		element.addClass(valueOfActiveButton);
-	}
-	// handle only startNode
-	if(valueOfActiveButton==targetNodeClassName){
 
 		// check if any other element has starting node and remove
 		if($('.element').hasClass(valueOfActiveButton)){
 			$('.element').removeClass(valueOfActiveButton);
 		}
 		element.addClass(valueOfActiveButton);
+		return;
+	}
+	// handle only startNode
+	if(valueOfActiveButton==targetNodeClassName){
+
+		// skip walls and target node
+		if(element.hasClass(wallNodeClassName) || element.hasClass(startNodeClassName)){
+			alert('Cannot make this cell a target node');
+			return;
+		}
+
+		// check if any other element has starting node and remove
+		if($('.element').hasClass(valueOfActiveButton)){
+			$('.element').removeClass(valueOfActiveButton);
+		}
+		element.addClass(valueOfActiveButton);
+		return;
 	}
 }
 

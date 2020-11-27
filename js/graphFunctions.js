@@ -41,7 +41,7 @@ function createAdjacencyList(nodeList){
 
 		// skip walls
 		hasWallClass = nodeList[node].DOM.classList.contains(wallNodeClassName);
-		
+
 		if(hasWallClass==true){
 			adjList[node] = [];
 		}else{
@@ -97,27 +97,6 @@ function getNodeAtPosition(row, col, allNodes){
 	}
 	return [null, false];
 }
-
-// removes nodes in undirected graph given its adjacency list-> Global variable, this is not pass by value b/ object
-// function removeNode(node, adjacencyListGlobal){
-
-// 	var listLength = adjacencyListGlobal[node].length // important as we are changing the global variable
-
-// 	for(var neighbour = 0; neighbour<listLength; neighbour++){ // if you put it here the foorloop will be affected as length changing dynamically
-
-// 		// removes link from neighbour to this node
-// 		currentElement = adjacencyListGlobal[node][neighbour];
-// 		indexToRemove = adjacencyListGlobal[currentElement].indexOf(node);
-// 		adjacencyListGlobal[currentElement].splice(indexToRemove,1);
-
-// 		console.log('removing this node='+ node.toString() + ' from neighbour=' + currentElement.toString());
-// 	}
-// 	// remove neighbours from this node in the global variable
-// 	console.log('removing all neighbour of ' + node.toString());
-// 	adjacencyListGlobal[node] = [];
-// }
-
-// adds a node to the list
 
 // create empty matrix
 function createMatrix(row, col){
@@ -209,4 +188,23 @@ function testAlert(){alert('alert on another file');}
 // 		}
 // 	}
 // 	return adjacencyMatrix;
+// }
+
+// removes nodes in undirected graph given its adjacency list-> Global variable, this is not pass by value b/ object
+// function removeNode(node, adjacencyListGlobal){
+
+// 	var listLength = adjacencyListGlobal[node].length // important as we are changing the global variable
+
+// 	for(var neighbour = 0; neighbour<listLength; neighbour++){ // if you put it here the foorloop will be affected as length changing dynamically
+
+// 		// removes link from neighbour to this node
+// 		currentElement = adjacencyListGlobal[node][neighbour];
+// 		indexToRemove = adjacencyListGlobal[currentElement].indexOf(node);
+// 		adjacencyListGlobal[currentElement].splice(indexToRemove,1);
+
+// 		console.log('removing this node='+ node.toString() + ' from neighbour=' + currentElement.toString());
+// 	}
+// 	// remove neighbours from this node in the global variable
+// 	console.log('removing all neighbour of ' + node.toString());
+// 	adjacencyListGlobal[node] = [];
 // }
