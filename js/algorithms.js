@@ -1,6 +1,6 @@
-// File contains methods for the different path finding algorythms
+// File contains methods for the different path finding algorithms
 
-//DFS algorythm
+//DFS algorithm
 function DFS(startNode, targetNode, adjacencyList){
 	// helper function
 	function helperDFSrecursive(startNode,adjacencyList){
