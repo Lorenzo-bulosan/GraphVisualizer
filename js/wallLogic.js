@@ -173,24 +173,23 @@ function drawPath(pathObject, allNodes){
 
 	console.log('drawing path');
 	var path = Object.getOwnPropertyNames(pathObject);
-	var currentNode = 0;
+	var start = 1;
 
-	for(var node = 0; node<path.length; node++){
+	// Draw path with delay
+	drawPathWithDelay(path, allNodes, start, path.length, 150); //1,2,3,4..12 will be alerted with 2 sec delay
+
+	// Draw path no delay -------------------------
+	// var currentNode = 0;
+	// for(var node = 0; node<path.length; node++){
 		
-		currentNode = path[node];
-		nodeClasses = allNodes[currentNode].DOM.classList;
-		// add path class to element but skip target and start nodes
-		if(nodeClasses.contains(startNodeClassName) || nodeClasses.contains(targetNodeClassName)){
-			console.log('');
-		}else{
-			nodeClasses.add(pathNodeClassName);
-		}
-	}
-}
+	// 	currentNode = path[node];
+	// 	nodeClasses = allNodes[currentNode].DOM.classList;
 
-// DEBUG ----------- THIS IS TO BE USED INSIDE THE FORLOOP ABOVE WITH A TIMER
-function addPathClass(){
-
+	// 	// add path class to element but skip target and start nodes
+	// 	if(!nodeClasses.contains(startNodeClassName) && !nodeClasses.contains(targetNodeClassName)){
+	// 		nodeClasses.add(pathNodeClassName);
+	// 	}
+	// }
 }
 
 // get start Node and target node
@@ -217,3 +216,29 @@ function getStartAndTargetNode(allNodes){
 }
 
 }); // end of document ready
+
+
+// TEST -------------------------------------
+function drawPathWithDelay(pathList, allNodes, current, length, milliseconds){
+
+	insideDelay = setTimeout(function(){
+
+		currentNode = pathList[current];
+		console.log(currentNode);
+		nodeClasses = allNodes[currentNode].DOM.classList;
+
+		// add path class to element but skip target and start nodes
+		if(!nodeClasses.contains(startNodeClassName) && !nodeClasses.contains(targetNodeClassName)){
+			nodeClasses.add('pathNode');
+		}
+
+		// base condition
+		if(current==length){
+		  clearTimeout(insideDelay);
+		  return;
+		}
+
+		drawPathWithDelay(pathList, allNodes, current+1, length, milliseconds);
+
+	}, milliseconds);
+}
