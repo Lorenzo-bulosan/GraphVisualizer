@@ -9,12 +9,6 @@ body{
 	background-size: 100% 100%;
 }
 
-/* tutorial styles */
-.overlay {
-	z-index: 9;
-	margin: 30px;
-	background: #009938;
-}
 
 /* navigation bar */
 .navbar-nav
@@ -86,5 +80,15 @@ body{
 .horizontalCentred{
 	text-align: center;
 }
+
+/* social media button styles */
+.socialMedia
+.fa
+{
+	margin: 1vh;
+	font-size: 5vh;
+	margin-top: 5vh;
+}
+
 
 /* for debugging */
