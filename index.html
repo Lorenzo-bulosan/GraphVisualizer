@@ -24,11 +24,14 @@
 		</div>
 		<ul class="nav navbar-nav">
 		 	<li class=""><a href="#" data-toggle="modal" data-target="#ModalTutorial0">Tutorial</a></li>
-			<li><a href="#">DFS algorythm</a></li>
+			<li><a href="#" class="algorithm" value="DFS">DFS algorithm</a></li>
+			<li><a href="#" class="algorithm" value="Dijkstra">Dijkstra's algorithm</a></li>
 			<li><a href="#">More soon!</a></li>
-<!-- 			<li><a href="#">Dijkstra's algorythm</a></li>
-			<li><a href="#">Bellman-Ford algorythm</a></li>
-			<li><a href="#">Floyd-Warshall algorythm</a></li> -->
+<!-- 			<li><a href="#">Dijkstra's algorithm</a></li>
+			<li><a href="#">Bellman-Ford algorithm
+		</a></li>
+			<li><a href="#">Floyd-Warshall algorithm
+		</a></li> -->
 		</ul>
 	</div>
 </nav>
@@ -157,7 +160,7 @@
 	<button class="btn btn-success btnGraph btnGroup1" id="btnStartNode" value="startNode">Starting Node</button>
 	<button class="btn btn-danger btnGraph btnGroup1" id="btnTargetNode" value="targetNode">Target Node</button>
 	<button class="btn btn-info btnGraph btnGroup1" id="btnStartPathFinding">START</button>
-	<button type="button" class="btn btn-warning" id="btnTutorial" data-toggle="modal" data-target="#ModalTutorial0">Tutorial
+	<!-- <button type="button" class="btn btn-warning" id="btnTutorial" data-toggle="modal" data-target="#ModalTutorial0">Tutorial -->
 	</button>
 	<button class="btn btn-info btnGroup2" id="btnClearAll">Reset</button>
 </div>
@@ -185,13 +188,14 @@
 	</div>
 </div>
 
-<!-- Modal for selecting algorythm-->
+<!-- Modal for selecting algorithm-->
 <div class="modal fade" id="ModalTutorial0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLongTitle">
-					<b>Step 0: Select an algorythm!</b> 
+					<b>Step 0: Select an algorithm
+				!</b> 
 				</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -199,7 +203,8 @@
 			</div>
 			<div class="modal-body">
 
-				<p> Select an algorythm on the top bar as such:</p>
+				<p> Select an algorithm
+			 on the top bar as such:</p>
 				<p class="horizontalCentred">
 					<img src="https://raw.githubusercontent.com/Lorenzo-bulosan/GraphVisualizer/savingPoint/images/tutorial_0.png">
 				</p>
@@ -296,7 +301,7 @@
 	</div>
 </div>
 
-<!-- Modal for tutorial starting the algorythm-->
+<!-- Modal for tutorial starting the algorithm-->
 <div class="modal fade" id="ModalTutorial4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -325,7 +330,7 @@
 
 <!-- scripts -->
 <script src="js/wallLogic.js"></script>
-<script src="js/algorythms.js"></script>
+<script src="js/algorithms.js"></script>
 <script src="js/graphFunctions.js"></script>
 
 </body>

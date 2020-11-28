@@ -7,6 +7,8 @@ var wallNodeClassName = 'wallNode';
 var startNodeClassName = 'startNode';
 var targetNodeClassName = 'targetNode';
 var pathNodeClassName = 'pathNode';
+var DfsClassName = 'DFS';
+var DijkstraClassName = 'Dijkstra';
 var adjacencyListGlobal = {};
 
 // creates nodes and adjacency list
@@ -20,22 +22,20 @@ $('.btnGroup2').hide();
 // Path Finding---------------------------
 $('#btnStartPathFinding').click(function(){
 
-	// get selected algorythm 
-	selectedAlgorythm = $('.selectedAlgorythm');
-
 	// get start and target node
-	allNodesGlobal = createNodesFromDOM();
+	var allNodesGlobal = createNodesFromDOM();
+	var algorithmType = $('.algorithm.active').attr('value');
 	[startNode, targetNode, startTargetNodeExist] = getStartAndTargetNode(allNodesGlobal);
-
-	// make sure there exist a start and target node
-	if(startTargetNodeExist == true){	
+	
+	// make sure there exist a start and target node and algorithm is selected
+	if(startTargetNodeExist == true && algorithmType!=null){	
 
 		// make the adjacency list
 		adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
 		console.log(adjacencyListGlobal);
 
-		//test search
-		[path, pathFound] = DFS(startNode, targetNode, adjacencyListGlobal);
+		// use selected algorithm to search
+		[path, pathFound] = useSelectedAlgorithm(startNode, targetNode, adjacencyListGlobal);
 
 		// draw path
 		if(pathFound == true){
@@ -49,11 +49,11 @@ $('#btnStartPathFinding').click(function(){
 		$('.btnGroup2').show();
 		
 	}else{
-		alert('Please select a start and target node');
-		console.log('Please select a start and target node');
+		alert('Please select a start/target node or select an algorithm');
 	}
 });
 
+// reset button
 $('#btnClearAll').click(function(){
 
 	// clear all classes
@@ -88,6 +88,31 @@ $('.btnGraph').click(function setActive(){
 	$(this).addClass('active');
 
 });
+
+// sets button to active and removes the active states from others
+$('.algorithm').click(function setActive(){
+
+	$('.algorithm').removeClass('active');
+	$(this).addClass('active');
+
+});
+
+// use algorithm depending on active selected
+function useSelectedAlgorithm(startNode, targetNode, adjacencyListGlobal){
+
+	var algorithmType = $('.algorithm.active').attr('value');
+
+	// make sure something is selected
+	if(algorithmType==null){return [null, false];}
+
+	if(algorithmType==DfsClassName){
+		return DFS(startNode, targetNode, adjacencyListGlobal);
+
+	}else if(algorithmType==DijkstraClassName){
+		alert('Not implemented yet, using DFS on the meantime');
+		return DFS(startNode, targetNode, adjacencyListGlobal);
+	}
+}
 
 // draws wall elements and when clicked 
 function drawWallElements(element, valueOfActiveButton){
@@ -161,6 +186,11 @@ function drawPath(pathObject, allNodes){
 			nodeClasses.add(pathNodeClassName);
 		}
 	}
+}
+
+// DEBUG ----------- THIS IS TO BE USED INSIDE THE FORLOOP ABOVE WITH A TIMER
+function addPathClass(){
+
 }
 
 // get start Node and target node

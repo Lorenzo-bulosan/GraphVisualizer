@@ -17,6 +17,12 @@ body{
 }
 
 /* navigation bar */
+.navbar-nav
+.algorithm.active
+{
+	background-color: #FFF !important;
+	color: #9d9d9d !important;
+}
 
 /* graph styles */
 .graphContainer
