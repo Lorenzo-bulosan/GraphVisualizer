@@ -169,27 +169,13 @@ function drawWallElements(element, valueOfActiveButton){
 }
 
 // draw path from a given list of nodes
-function drawPath(pathObject, allNodes){
+function drawPath(pathList, allNodes){
 
-	console.log('drawing path');
-	var path = Object.getOwnPropertyNames(pathObject);
-	var start = 1;
+	var path = pathList;
+	var start = 0;
 
 	// Draw path with delay
-	drawPathWithDelay(path, allNodes, start, path.length, 150); //1,2,3,4..12 will be alerted with 2 sec delay
-
-	// Draw path no delay -------------------------
-	// var currentNode = 0;
-	// for(var node = 0; node<path.length; node++){
-		
-	// 	currentNode = path[node];
-	// 	nodeClasses = allNodes[currentNode].DOM.classList;
-
-	// 	// add path class to element but skip target and start nodes
-	// 	if(!nodeClasses.contains(startNodeClassName) && !nodeClasses.contains(targetNodeClassName)){
-	// 		nodeClasses.add(pathNodeClassName);
-	// 	}
-	// }
+	drawPathWithDelay(path, allNodes, start, path.length, 150);	
 }
 
 // get start Node and target node
@@ -215,25 +201,21 @@ function getStartAndTargetNode(allNodes){
 	return [startNode.value, targetNode.value, true];
 }
 
-}); // end of document ready
-
-
-// TEST -------------------------------------
+// drawing path recursively with delay
 function drawPathWithDelay(pathList, allNodes, current, length, milliseconds){
 
 	insideDelay = setTimeout(function(){
 
 		currentNode = pathList[current];
-		console.log(currentNode);
 		nodeClasses = allNodes[currentNode].DOM.classList;
 
-		// add path class to element but skip target and start nodes
+		// // add path class to element but skip target and start nodes
 		if(!nodeClasses.contains(startNodeClassName) && !nodeClasses.contains(targetNodeClassName)){
 			nodeClasses.add('pathNode');
 		}
 
 		// base condition
-		if(current==length){
+		if(current==length-1){
 		  clearTimeout(insideDelay);
 		  return;
 		}
@@ -242,3 +224,7 @@ function drawPathWithDelay(pathList, allNodes, current, length, milliseconds){
 
 	}, milliseconds);
 }
+
+}); // end of document ready
+
+

@@ -7,7 +7,9 @@ function DFS(startNode, targetNode, adjacencyList){
 
 		var currentNode = 0;
 		var neighbour = 0;
+
 		visitedList[startNode] = true;
+		resultsList.push(startNode);
 
 		if(startNode == targetNode){
 			console.log('Found -----------------------------------');
@@ -35,13 +37,14 @@ function DFS(startNode, targetNode, adjacencyList){
 	console.log('Searching for node: ' + targetNode.toString());
 
 	var visitedList = {};
+	var resultsList = [];
 
 	isFound = helperDFSrecursive(startNode, adjacencyList);
 	
 	if(isFound){
-		return [visitedList, true];
+		return [resultsList, true];
 	} else {
-		return [visitedList, false];
+		return [resultsList, false];
 	}
 }
 
