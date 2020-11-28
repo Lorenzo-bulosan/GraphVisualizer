@@ -6,24 +6,34 @@ $( document ).ready(function() {
 var wallNodeClassName = 'wallNode';
 var startNodeClassName = 'startNode';
 var targetNodeClassName = 'targetNode';
+var pathNodeClassName = 'pathNode';
 var adjacencyListGlobal = {};
 
 // creates nodes and adjacency list
 // allNodesGlobal = createNodesFromDOM();
 // adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
 
-// Debugging---------------------------
-$('#btnDebug').click(function(){
+// When refreshed do the following
+$('#ModalTutorial').modal('show');
+$('.btnGroup2').hide();
 
-	allNodesGlobal = createNodesFromDOM();
-	adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
-	console.log(adjacencyListGlobal);
+// Path Finding---------------------------
+$('#btnStartPathFinding').click(function(){
+
+	// get selected algorythm 
+	selectedAlgorythm = $('.selectedAlgorythm');
 
 	// get start and target node
+	allNodesGlobal = createNodesFromDOM();
 	[startNode, targetNode, startTargetNodeExist] = getStartAndTargetNode(allNodesGlobal);
 
 	// make sure there exist a start and target node
-	if(startTargetNodeExist == true){
+	if(startTargetNodeExist == true){	
+
+		// make the adjacency list
+		adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
+		console.log(adjacencyListGlobal);
+
 		//test search
 		[path, pathFound] = DFS(startNode, targetNode, adjacencyListGlobal);
 
@@ -33,10 +43,28 @@ $('#btnDebug').click(function(){
 		}else {
 			alert('Path not found');
 		}
+
+		// hide buttons
+		$('.btnGroup1').hide();
+		$('.btnGroup2').show();
 		
 	}else{
+		alert('Please select a start and target node');
 		console.log('Please select a start and target node');
 	}
+});
+
+$('#btnClearAll').click(function(){
+
+	// clear all classes
+	$('.element').removeClass(wallNodeClassName);
+	$('.element').removeClass(startNodeClassName);
+	$('.element').removeClass(targetNodeClassName);
+	$('.element').removeClass(pathNodeClassName);
+
+	// show buttons again
+	$('.btnGroup1').show();
+	$('.btnGroup2').hide();
 });
 
 // sets graph element to specific class
@@ -130,7 +158,7 @@ function drawPath(pathObject, allNodes){
 		if(nodeClasses.contains(startNodeClassName) || nodeClasses.contains(targetNodeClassName)){
 			console.log('');
 		}else{
-			nodeClasses.add('path');
+			nodeClasses.add(pathNodeClassName);
 		}
 	}
 }
