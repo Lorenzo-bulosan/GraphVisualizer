@@ -14,11 +14,14 @@ var adjacencyListGlobal = {};
 // adjacencyListGlobal = createAdjacencyList(allNodesGlobal);
 
 // When refreshed do the following
-$('#ModalTutorial0').modal('show');
+$('#ModalTutorial').modal('show');
 $('.btnGroup2').hide();
 
 // Path Finding---------------------------
 $('#btnStartPathFinding').click(function(){
+
+	// get selected algorythm 
+	selectedAlgorythm = $('.selectedAlgorythm');
 
 	// get start and target node
 	allNodesGlobal = createNodesFromDOM();

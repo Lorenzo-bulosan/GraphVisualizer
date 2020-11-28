@@ -23,7 +23,7 @@
 		 	<a class="navbar-brand" href="#">LKgraph</a>
 		</div>
 		<ul class="nav navbar-nav">
-		 	<li class=""><a href="#" data-toggle="modal" data-target="#ModalTutorial1">Instructions</a></li>
+		 	<li class=""><a href="#" data-toggle="modal" data-target="#ModalTutorial0">Tutorial</a></li>
 			<li><a href="#">DFS algorythm</a></li>
 			<li><a href="#">More soon!</a></li>
 <!-- 			<li><a href="#">Dijkstra's algorythm</a></li>
@@ -157,13 +157,13 @@
 	<button class="btn btn-success btnGraph btnGroup1" id="btnStartNode" value="startNode">Starting Node</button>
 	<button class="btn btn-danger btnGraph btnGroup1" id="btnTargetNode" value="targetNode">Target Node</button>
 	<button class="btn btn-info btnGraph btnGroup1" id="btnStartPathFinding">START</button>
-	<button type="button" class="btn btn-warning" id="btnTutorial" data-toggle="modal" data-target="#ModalTutorial1">Tutorial
+	<button type="button" class="btn btn-warning" id="btnTutorial" data-toggle="modal" data-target="#ModalTutorial0">Tutorial
 	</button>
 	<button class="btn btn-info btnGroup2" id="btnClearAll">Reset</button>
 </div>
 
 <!-- Modal when page is refreshed-->
-<div class="modal fade" id="ModalTutorial0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="ModalTutorial" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -177,9 +177,38 @@
 			<div class="modal-body">
 				<p class="horizontalCentred">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial1">Yes!</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial0">Yes!</button>
 				</p>
 				<p>You can always start the tutorial later on.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for selecting algorythm-->
+<div class="modal fade" id="ModalTutorial0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">
+					<b>Step 0: Select an algorythm!</b> 
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<p> Select an algorythm on the top bar as such:</p>
+				<p class="horizontalCentred">
+					<img src="https://raw.githubusercontent.com/Lorenzo-bulosan/GraphVisualizer/savingPoint/images/tutorial_0.png">
+				</p>
+				
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial1">Next</button>
 			</div>
 		</div>
 	</div>
@@ -206,7 +235,7 @@
 				</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial0">Prev</button>
 				<button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#ModalTutorial2">Next</button>
 			</div>
 		</div>
